@@ -1,0 +1,4 @@
+Dataset/
+dashboard/node_modules
+backend/models/transfer_VGG16_frozen.h5
+backend/models/transfer_VGG16_finetuned.h5  
