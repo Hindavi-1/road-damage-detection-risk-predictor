@@ -36,43 +36,12 @@ const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
  * Returns a mock response that mirrors the real Flask contract.
  */
 export async function analyzeImage(file: File): Promise<AnalysisResult> {
-  // In production: uncomment the axios call below and remove the mock block
-  //
-  // const form = new FormData();
-  // form.append("image", file);
-  // const { data } = await apiClient.post<AnalysisResult>("/analyze", form, {
-  //   headers: { "Content-Type": "multipart/form-data" },
-  // });
-  // return data;
-
-  await delay(2200); // simulate inference time
-
-  const original_url = URL.createObjectURL(file);
-
-  return {
-    original_url,
-    image_url: original_url, // production: server returns annotated image URL
-    detections: [
-      { type: "pothole", confidence: 0.92 },
-      { type: "pothole", confidence: 0.88 },
-      { type: "crack",   confidence: 0.79 },
-      { type: "pothole", confidence: 0.71 },
-      { type: "crack",   confidence: 0.65 },
-    ],
-    features: {
-      pothole_count: 3,
-      crack_count:   2,
-      damage_area:   0.42,
-      rutting_count: 0,
-      erosion_count: 0,
-    },
-    prediction: {
-      priority:   "High",
-      risk_score: 0.87,
-      reason:
-        "Multiple potholes detected alongside significant cracking. Combined damage area of 42 % signals structural degradation requiring urgent intervention.",
-    },
-  };
+  const form = new FormData();
+  form.append("image", file);
+  const { data } = await apiClient.post<AnalysisResult>("/analyze", form, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return data;
 }
 
 // ─── Dashboard API ────────────────────────────────────────────────────────────

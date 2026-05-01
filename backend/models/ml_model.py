@@ -9,19 +9,19 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-FINETUNED_MODEL_PATH = os.path.join(BASE_DIR, "../transfer_VGG16_finetuned.h5")
-FROZEN_MODEL_PATH = os.path.join(BASE_DIR, "../transfer_VGG16_frozen.h5")
+FINETUNED_MODEL_PATH = os.path.join(BASE_DIR, "transfer_VGG16_finetuned.h5")
+FROZEN_MODEL_PATH = os.path.join(BASE_DIR, "transfer_VGG16_frozen.h5")
 
-IMG_SIZE = 224
+IMG_SIZE = 128
 
 # Class labels (IMPORTANT: match your training order)
 CLASS_NAMES = ["D00", "D10", "D20", "D40"]
 
 CLASS_MAP = {
-    "D00": "No Damage",
-    "D10": "Longitudinal Crack",
-    "D20": "Transverse Crack",
-    "D40": "Pothole"
+    "D00": "Longitudinal Cracks",
+    "D10": "Transverse Cracks",
+    "D20": "Alligator Cracks",
+    "D40": "Potholes"
 }
 
 # ==============================
@@ -133,6 +133,8 @@ def predict_damage(file, use_finetuned=True):
         }
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return {
             "error": str(e)
         }

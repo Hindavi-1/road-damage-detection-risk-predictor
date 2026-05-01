@@ -46,8 +46,6 @@ export default function FeatureSummary({ features }: FeatureSummaryProps) {
     { label: "Pothole Count",   value: features.pothole_count,                    max: 10,  unit: "",   color: "bg-red-500",    delay: 0.1  },
     { label: "Crack Count",     value: features.crack_count,                      max: 15,  unit: "",   color: "bg-orange-500", delay: 0.2  },
     { label: "Damaged Area",    value: parseFloat((features.damage_area * 100).toFixed(1)), max: 100, unit: "%", color: "bg-cyan-500", delay: 0.3 },
-    { label: "Rutting Events",  value: features.rutting_count ?? 0,               max: 5,   unit: "",   color: "bg-yellow-500", delay: 0.4  },
-    { label: "Erosion Events",  value: features.erosion_count ?? 0,               max: 5,   unit: "",   color: "bg-purple-500", delay: 0.5  },
   ];
 
   return (
