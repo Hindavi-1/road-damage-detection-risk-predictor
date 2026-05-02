@@ -90,7 +90,7 @@ export default function UploadBox({ onFileSelected, disabled, preview, onClear }
             className={`w-full h-72 rounded-2xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center gap-4 cursor-pointer
               ${dragging
                 ? "border-cyan-400 bg-cyan-400/5 scale-[1.01]"
-                : "border-slate-700 bg-white/[0.02] hover:border-blue-500/60 hover:bg-blue-500/5"
+                : "border-white/10 bg-[var(--bg-surface)] hover:border-blue-500/40 hover:bg-blue-500/5 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)]"
               }
               ${disabled ? "opacity-50 cursor-not-allowed" : ""}
             `}

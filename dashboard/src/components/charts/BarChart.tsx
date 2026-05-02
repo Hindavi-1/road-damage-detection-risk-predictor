@@ -38,29 +38,29 @@ const CustomTooltip = ({
 
 export default function FrequencyBarChart({ data }: FrequencyBarChartProps) {
   return (
-    <div className="glass rounded-2xl p-6 border border-white/[0.07] h-full">
-      <p className="text-sm font-semibold text-slate-300 mb-1">Detection Frequency</p>
-      <p className="text-xs text-slate-600 mb-5">Monthly detections over the past year</p>
+    <div className="card rounded-2xl p-6 h-full">
+      <p className="text-sm font-semibold text-slate-200 mb-1">Detection Frequency</p>
+      <p className="label mb-5">Monthly detections over the past year</p>
 
       <ResponsiveContainer width="100%" height={280}>
-        <BarChart data={data} barSize={22}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+        <BarChart data={data} barSize={24}>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
           <XAxis
             dataKey="date"
-            tick={{ fill: "#64748b", fontSize: 11 }}
+            tick={{ fill: "#3b526e", fontSize: 11 }}
             axisLine={false}
             tickLine={false}
           />
           <YAxis
-            tick={{ fill: "#64748b", fontSize: 11 }}
+            tick={{ fill: "#3b526e", fontSize: 11 }}
             axisLine={false}
             tickLine={false}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(59,130,246,0.06)" }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(59,130,246,0.05)" }} />
           <Bar
             dataKey="count"
-            fill="#3B82F6"
-            radius={[4, 4, 0, 0]}
+            fill="#3b82f6"
+            radius={[5, 5, 0, 0]}
           />
         </BarChart>
       </ResponsiveContainer>

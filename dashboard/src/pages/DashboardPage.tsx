@@ -62,15 +62,15 @@ function StatCard({ label, value, sub, icon, gradient, delay = 0 }: StatCardProp
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.45 }}
-      className="glass rounded-2xl p-5 border border-white/[0.07] hover:border-white/10 hover:scale-[1.02] transition-all duration-300"
+      className="glass rounded-2xl p-5 border border-white/10 hover:border-white/20 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300"
     >
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs text-slate-500 uppercase tracking-widest font-semibold">{label}</p>
-          <p className={`text-3xl font-extrabold mt-2 ${gradient}`}>{value}</p>
-          {sub && <p className="text-xs text-slate-600 mt-1">{sub}</p>}
+          <p className="text-[11px] text-slate-500 uppercase tracking-widest font-bold">{label}</p>
+          <p className={`text-4xl font-extrabold mt-3 tracking-tight ${gradient}`}>{value}</p>
+          {sub && <p className="text-[11px] font-medium text-slate-400 mt-2">{sub}</p>}
         </div>
-        <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center">
+        <div className="w-11 h-11 rounded-xl bg-[var(--bg-surface)] shadow-inner border border-white/[0.05] flex items-center justify-center">
           {icon}
         </div>
       </div>
@@ -124,13 +124,13 @@ function PriorityBarChart({ data }: { data: PriorityDistribution[] }) {
 
 function CriticalCasesTable({ cases }: { cases: CriticalCase[] }) {
   return (
-    <div className="glass rounded-2xl border border-white/[0.07] overflow-hidden">
-      <div className="px-6 py-5 border-b border-white/[0.05]">
+    <div className="glass rounded-2xl border border-white/[0.08] overflow-hidden shadow-lg">
+      <div className="px-6 py-5 border-b border-white/[0.04] bg-[var(--bg-surface)]">
         <div className="flex items-center gap-2">
           <AlertTriangle size={16} className="text-red-400" />
-          <p className="text-sm font-semibold text-slate-300">Most Critical Cases</p>
+          <p className="text-sm font-bold text-slate-200 tracking-wide">Critical Attention Required</p>
         </div>
-        <p className="text-xs text-slate-600 mt-0.5">Highest risk locations requiring immediate attention</p>
+        <p className="text-xs text-slate-500 font-medium mt-1">Highest risk locations prioritized by the AI assessment model</p>
       </div>
 
       <div className="divide-y divide-white/[0.04]">

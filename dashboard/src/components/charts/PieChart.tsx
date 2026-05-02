@@ -21,18 +21,18 @@ const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: { name
   if (!active || !payload?.length) return null;
   const entry = payload[0];
   return (
-    <div className="glass rounded-xl px-4 py-3 border border-white/10 text-sm shadow-xl">
+    <div className="rounded-xl px-4 py-3 text-sm shadow-2xl" style={{ background: "#0b1120", border: "1px solid rgba(255,255,255,0.1)" }}>
       <p className="font-semibold text-white">{entry.name}</p>
-      <p className="text-slate-400 mt-0.5">Count: <span className="text-white font-bold">{entry.value}</span></p>
+      <p className="mt-0.5" style={{ color: "var(--text-muted)" }}>Count: <span className="text-white font-bold font-mono">{entry.value}</span></p>
     </div>
   );
 };
 
 export default function DamagePieChart({ data }: DamagePieChartProps) {
   return (
-    <div className="glass rounded-2xl p-6 border border-white/[0.07] h-full">
-      <p className="text-sm font-semibold text-slate-300 mb-1">Damage Distribution</p>
-      <p className="text-xs text-slate-600 mb-5">Breakdown by damage type</p>
+    <div className="card rounded-2xl p-6 h-full">
+      <p className="text-sm font-semibold text-slate-200 mb-1">Damage Distribution</p>
+      <p className="label mb-5">Breakdown by damage type</p>
 
       <ResponsiveContainer width="100%" height={280}>
         <PieChart>

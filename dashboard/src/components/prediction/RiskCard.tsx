@@ -13,10 +13,10 @@ interface RiskCardProps {
 
 /** Maps risk score (0–1) to a colour gradient */
 function scoreToColor(score: number) {
-  if (score >= 0.85) return "#EF4444";
-  if (score >= 0.65) return "#F97316";
-  if (score >= 0.40) return "#EAB308";
-  return "#22C55E";
+  if (score >= 0.85) return "#f43f5e"; // rose-500
+  if (score >= 0.65) return "#f97316"; // orange-500
+  if (score >= 0.40) return "#f59e0b"; // amber-500
+  return "#10b981"; // emerald-500
 }
 
 /** Animated circular gauge */
@@ -67,16 +67,16 @@ export default function RiskCard({ prediction }: RiskCardProps) {
       initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="glass rounded-2xl p-6 border border-white/[0.07] space-y-6"
+      className="bg-[var(--bg-surface)] rounded-2xl p-6 border border-white/5 space-y-6 shadow-inner"
     >
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 shadow-[0_0_10px_rgba(244,63,94,0.15)] flex items-center justify-center">
           <ShieldAlert size={20} className="text-red-400" />
         </div>
         <div>
-          <p className="text-xs text-slate-500 uppercase tracking-widest font-semibold">Risk Assessment</p>
-          <p className="text-sm font-bold text-slate-200 mt-0.5">ML Priority Classification</p>
+          <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Risk Assessment</p>
+          <p className="text-sm font-bold text-slate-100 mt-0.5">ML Priority Classification</p>
         </div>
       </div>
 

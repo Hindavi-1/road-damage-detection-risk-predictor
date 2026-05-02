@@ -80,9 +80,9 @@ export default function LandingPage() {
     <div className="min-h-full overflow-x-hidden">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 py-20 overflow-hidden">
-        {/* Ambient glow blobs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan-600/8 blur-3xl pointer-events-none" />
+        {/* Subtle background grid */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAyKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-base)] via-transparent to-[var(--bg-base)] pointer-events-none" />
 
         {/* Badge */}
         <motion.div
@@ -136,7 +136,7 @@ export default function LandingPage() {
           </button>
           <button
             onClick={() => navigate("/dashboard")}
-            className="group flex items-center gap-2 px-7 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 font-semibold text-sm border border-white/10 hover:border-white/20 transition-all duration-200 hover:scale-[1.03]"
+            className="group flex items-center gap-2 px-7 py-3 rounded-xl bg-[var(--bg-surface)] hover:bg-white/[0.05] text-slate-200 font-semibold text-sm border border-white/[0.05] hover:border-white/[0.1] shadow-lg transition-all duration-300 hover:scale-[1.02]"
           >
             <BarChart3 size={17} />
             View Analytics
@@ -187,11 +187,11 @@ export default function LandingPage() {
                   transition={{ delay: i * 0.12 }}
                   className="flex flex-col items-center gap-2 text-center"
                 >
-                  <div className="w-12 h-12 rounded-xl glass border border-blue-500/25 flex items-center justify-center text-xs font-bold text-blue-400">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--bg-surface)] border border-white/[0.08] shadow-lg flex items-center justify-center text-xs font-bold text-blue-400">
                     {p.step}
                   </div>
-                  <p className="text-xs font-semibold text-slate-300 leading-tight">{p.label}</p>
-                  <p className="text-[10px] text-slate-600">{p.sub}</p>
+                  <p className="text-xs font-semibold text-slate-300 leading-tight mt-1">{p.label}</p>
+                  <p className="text-[10px] text-slate-500 font-medium">{p.sub}</p>
                 </motion.div>
                 {i < pipeline.length - 1 && (
                   <div className="pipeline-line min-w-[20px] flex-shrink-0 mb-6" />
@@ -229,11 +229,11 @@ export default function LandingPage() {
                 transition={{ delay: i * 0.08 }}
                 className={`glass rounded-2xl p-6 border ${f.border} bg-gradient-to-br ${f.color} hover:scale-[1.02] hover:border-white/15 transition-all duration-300 cursor-default`}
               >
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4">
+                <div className="w-10 h-10 rounded-xl bg-[var(--bg-surface)] border border-white/[0.05] shadow-inner flex items-center justify-center mb-5">
                   {f.icon}
                 </div>
-                <h3 className="text-sm font-bold text-slate-200 mb-2">{f.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{f.desc}</p>
+                <h3 className="text-sm font-bold text-slate-100 mb-2">{f.title}</h3>
+                <p className="text-[13px] text-slate-400 leading-relaxed font-medium">{f.desc}</p>
               </motion.div>
             ))}
           </div>

@@ -31,31 +31,6 @@ import type { AnalysisResult, LoadingState } from "../types";
 
 // ── Pipeline step indicator ────────────────────────────────────────────────
 
-interface StepProps {
-  number: number;
-  label: string;
-  active: boolean;
-  done: boolean;
-}
-
-function PipelineStep({ number, label, active, done }: StepProps) {
-  return (
-    <div className="flex flex-col items-center gap-1.5 flex-shrink-0">
-      <div
-        className={`w-9 h-9 rounded-xl flex items-center justify-center text-sm font-bold transition-all duration-500
-          ${done  ? "bg-emerald-500/20 border border-emerald-500/40 text-emerald-400" : ""}
-          ${active && !done ? "bg-blue-500/20 border border-blue-500/40 text-blue-400 animate-pulse" : ""}
-          ${!active && !done ? "bg-white/[0.04] border border-white/10 text-slate-600" : ""}`}
-      >
-        {done ? "✓" : number}
-      </div>
-      <p className={`text-[10px] font-semibold transition-colors ${active || done ? "text-slate-300" : "text-slate-700"}`}>
-        {label}
-      </p>
-    </div>
-  );
-}
-
 const STEPS = ["Upload", "Detect", "Extract", "Predict", "Decide"];
 
 export default function DetectPage() {
@@ -108,21 +83,34 @@ export default function DetectPage() {
     <div className="p-6 max-w-7xl mx-auto space-y-8">
 
       {/* ── Pipeline progress bar ─────────────────────────────────────── */}
-      <div className="glass rounded-2xl px-6 py-5 border border-white/[0.06]">
-        <div className="flex items-center justify-between gap-2 overflow-x-auto">
-          {STEPS.map((s, i) => (
-            <div key={s} className="flex items-center gap-2 flex-shrink-0">
-              <PipelineStep
-                number={i + 1}
-                label={s}
-                active={activeStep === i && loadState !== "success"}
-                done={i < doneSteps || loadState === "success"}
-              />
-              {i < STEPS.length - 1 && (
-                <ChevronRight size={14} className="text-slate-700 flex-shrink-0 mb-4" />
-              )}
-            </div>
-          ))}
+      <div className="glass rounded-2xl px-6 py-6 border border-white/[0.06] mb-8">
+        <div className="flex items-center justify-between gap-4 relative z-10 w-full max-w-4xl mx-auto">
+          {STEPS.map((s, i) => {
+            const isDone = i < doneSteps || loadState === "success";
+            const isActive = activeStep === i && loadState !== "success";
+            return (
+              <div key={s} className="flex flex-col items-center flex-1 relative">
+                {/* Connector Line */}
+                {i < STEPS.length - 1 && (
+                  <div className="absolute top-5 left-[50%] w-full h-[2px] bg-white/[0.05] -z-10">
+                    <div className={`h-full transition-all duration-700 ease-in-out ${i < doneSteps ? "bg-emerald-500/50 w-full" : "bg-transparent w-0"}`} />
+                  </div>
+                )}
+                {/* Step Circle */}
+                <div
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-500 border-2 bg-[var(--bg-base)]
+                    ${isDone ? "border-emerald-500 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.3)]" : ""}
+                    ${isActive ? "border-blue-500 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.3)]" : ""}
+                    ${!isActive && !isDone ? "border-white/10 text-slate-600" : ""}`}
+                >
+                  {isDone ? "✓" : i + 1}
+                </div>
+                <p className={`text-[10px] font-semibold tracking-wider uppercase transition-colors mt-3 ${isActive || isDone ? "text-slate-300" : "text-slate-600"}`}>
+                  {s}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -266,25 +254,25 @@ interface SectionProps {
 }
 
 const COLOR_MAP = {
-  blue:   { border: "border-blue-500/20",   badge: "bg-blue-500/10 text-blue-300 border-blue-500/20"   },
-  cyan:   { border: "border-cyan-500/20",   badge: "bg-cyan-500/10 text-cyan-300 border-cyan-500/20"   },
-  red:    { border: "border-red-500/20",    badge: "bg-red-500/10 text-red-300 border-red-500/20"       },
-  purple: { border: "border-purple-500/20", badge: "bg-purple-500/10 text-purple-300 border-purple-500/20" },
+  blue:   { border: "border-white/10 hover:border-blue-500/30",   badge: "bg-blue-500/10 text-blue-400 border-blue-500/20"   },
+  cyan:   { border: "border-white/10 hover:border-cyan-500/30",   badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20"   },
+  red:    { border: "border-white/10 hover:border-red-500/30",    badge: "bg-red-500/10 text-red-400 border-red-500/20"       },
+  purple: { border: "border-white/10 hover:border-purple-500/30", badge: "bg-purple-500/10 text-purple-400 border-purple-500/20" },
 };
 
 function Section({ icon, stage, title, color, children }: SectionProps) {
   const c = COLOR_MAP[color];
   return (
-    <div className={`glass rounded-2xl p-6 border ${c.border} space-y-5`}>
-      <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.07] flex items-center justify-center">
+    <div className={`glass rounded-2xl p-6 border ${c.border} transition-all duration-300 space-y-5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]`}>
+      <div className="flex items-center gap-3 border-b border-white/[0.04] pb-4">
+        <div className="w-10 h-10 rounded-xl bg-[var(--bg-surface)] border border-white/10 shadow-inner flex items-center justify-center">
           {icon}
         </div>
         <div>
-          <span className={`text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full border ${c.badge}`}>
+          <span className={`text-[10px] uppercase tracking-widest font-bold px-2.5 py-0.5 rounded-md border ${c.badge}`}>
             {stage}
           </span>
-          <p className="text-sm font-bold text-slate-200 mt-1">{title}</p>
+          <p className="text-base font-bold text-slate-100 mt-1">{title}</p>
         </div>
       </div>
       {children}

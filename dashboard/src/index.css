@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
+/* ── Custom CSS Variables ────────────────────────────────────────────────── */
+:root {
+  /* Brand */
+  --bg-base: #0f1423;
+  --bg-surface: #151b2b;
+  
+  /* Priority Levels */
+  --priority-vhigh: #e11d48; /* Rose 600 */
+  --priority-high: #ea580c; /* Orange 600 */
+  --priority-medium: #d97706; /* Amber 600 */
+  --priority-low: #059669; /* Emerald 600 */
+}
+
 /* ── Custom scrollbar ───────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #0B0F1A; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
 ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #3B82F6; }
 
@@ -11,18 +24,19 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background-color: #0B0F1A;
-  color: #E5E7EB;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-base);
+  color: #f8fafc;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ── Glass card utility ──────────────────────────────────────────────────── */
 .glass {
-  background: rgba(17, 24, 39, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(21, 27, 43, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 /* ── Gradient text ──────────────────────────────────────────────────────── */
@@ -34,14 +48,16 @@ body {
 }
 
 /* ── Glow effects ───────────────────────────────────────────────────────── */
-.glow-blue  { box-shadow: 0 0 20px rgba(59,130,246,0.25); }
-.glow-cyan  { box-shadow: 0 0 20px rgba(34,211,238,0.25); }
-.glow-red   { box-shadow: 0 0 20px rgba(239,68,68,0.25);  }
+.glow-blue  { box-shadow: 0 0 25px rgba(59,130,246,0.3); }
+.glow-cyan  { box-shadow: 0 0 25px rgba(34,211,238,0.3); }
+.glow-red   { box-shadow: 0 0 25px rgba(225,29,72,0.3);  }
+.glow-orange{ box-shadow: 0 0 25px rgba(234,88,12,0.3);  }
 
 /* ── Pipeline connector ─────────────────────────────────────────────────── */
 .pipeline-line {
   background: linear-gradient(90deg, #3B82F6, #22D3EE);
   height: 2px;
   flex: 1;
-  opacity: 0.5;
+  opacity: 0.3;
 }
+

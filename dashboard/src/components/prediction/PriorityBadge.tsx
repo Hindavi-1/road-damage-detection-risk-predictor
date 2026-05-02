@@ -13,10 +13,10 @@ interface PriorityBadgeProps {
 }
 
 const CONFIG: Record<PriorityLevel, { bg: string; border: string; text: string; dot: string }> = {
-  "Very High": { bg: "bg-red-500/15",    border: "border-red-500/40",    text: "text-red-400",    dot: "bg-red-400" },
-  "High":      { bg: "bg-orange-500/15", border: "border-orange-500/40", text: "text-orange-400", dot: "bg-orange-400" },
-  "Medium":    { bg: "bg-yellow-500/15", border: "border-yellow-500/40", text: "text-yellow-400", dot: "bg-yellow-400" },
-  "Low":       { bg: "bg-green-500/15",  border: "border-green-500/40",  text: "text-green-400",  dot: "bg-green-400"  },
+  "Very High": { bg: "bg-rose-500/10",   border: "border-rose-500/30",   text: "text-rose-400",   dot: "bg-rose-400 shadow-[0_0_8px_rgba(244,63,94,0.6)]" },
+  "High":      { bg: "bg-orange-500/10", border: "border-orange-500/30", text: "text-orange-400", dot: "bg-orange-400 shadow-[0_0_8px_rgba(249,115,22,0.6)]" },
+  "Medium":    { bg: "bg-amber-500/10",  border: "border-amber-500/30",  text: "text-amber-400",  dot: "bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.6)]" },
+  "Low":       { bg: "bg-emerald-500/10",border: "border-emerald-500/30",text: "text-emerald-400",dot: "bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.6)]" },
 };
 
 const SIZE: Record<"sm" | "md" | "lg", string> = {

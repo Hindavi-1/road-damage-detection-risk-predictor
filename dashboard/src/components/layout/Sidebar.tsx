@@ -37,13 +37,13 @@ export default function Sidebar() {
   const SidebarContent = () => (
     <div className="flex flex-col h-full">
       {/* Brand */}
-      <div className="flex items-center gap-3 px-5 py-6 border-b border-white/5">
-        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-lg glow-blue flex-shrink-0">
+      <div className="flex items-center gap-3 px-6 py-6 border-b border-white/[0.04]">
+        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/20 flex-shrink-0 border border-white/10">
           <Cpu size={18} className="text-white" />
         </div>
-        <div className="overflow-hidden">
-          <p className="text-xs font-bold text-white leading-none tracking-wide">ROAD</p>
-          <p className="text-xs text-blue-400 font-semibold tracking-widest">AI DETECT</p>
+        <div className="overflow-hidden flex flex-col justify-center mt-0.5">
+          <p className="text-[13px] font-bold text-white leading-none tracking-wide">Damage<span className="text-blue-400">Sense</span></p>
+          <p className="text-[9px] text-slate-500 font-medium tracking-widest mt-1 uppercase">AI Assessment</p>
         </div>
       </div>
 
@@ -55,11 +55,11 @@ export default function Sidebar() {
             to={item.path}
             onClick={() => setMobileOpen(false)}
             className={({ isActive }) =>
-              `group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
+              `group flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300
                ${
                  isActive
-                   ? "bg-blue-500/15 text-blue-400 border border-blue-500/30 glow-blue"
-                   : "text-slate-400 hover:bg-white/5 hover:text-white border border-transparent"
+                   ? "bg-blue-500/10 text-blue-400 border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.1)]"
+                   : "text-slate-400 hover:bg-white/[0.03] hover:text-white border border-transparent"
                }`
             }
           >
@@ -93,7 +93,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-60 h-full bg-[#0d1117] border-r border-white/[0.06] flex-shrink-0">
+      <aside className="hidden lg:flex flex-col w-64 h-full bg-[var(--bg-surface)] border-r border-white/[0.04] flex-shrink-0">
         <SidebarContent />
       </aside>
 
@@ -118,11 +118,11 @@ export default function Sidebar() {
               className="fixed inset-0 bg-black/60 z-40 lg:hidden"
             />
             <motion.aside
-              initial={{ x: -240 }}
+              initial={{ x: -256 }}
               animate={{ x: 0 }}
-              exit={{ x: -240 }}
+              exit={{ x: -256 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed left-0 top-0 h-full w-60 bg-[#0d1117] border-r border-white/[0.06] z-50 lg:hidden"
+              className="fixed left-0 top-0 h-full w-64 bg-[var(--bg-surface)] border-r border-white/[0.04] z-50 lg:hidden"
             >
               <button
                 onClick={() => setMobileOpen(false)}

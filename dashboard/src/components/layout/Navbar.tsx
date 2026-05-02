@@ -19,7 +19,10 @@ export default function Navbar() {
   const title = PAGE_TITLES[pathname] ?? "Road AI System";
 
   return (
-    <header className="h-16 flex items-center justify-between px-6 border-b border-white/[0.06] bg-[#0d1117]/80 backdrop-blur-md flex-shrink-0 z-10">
+    <header className="h-16 flex items-center justify-between px-6 bg-[var(--bg-surface)]/80 backdrop-blur-md flex-shrink-0 z-10 relative">
+      {/* Gradient border bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+      
       {/* Page title — padded on mobile to clear hamburger */}
       <h1 className="text-sm font-semibold text-slate-200 pl-10 lg:pl-0 tracking-wide">
         {title}
@@ -40,7 +43,7 @@ export default function Navbar() {
         </button>
 
         {/* Avatar */}
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white text-xs font-bold shadow-md cursor-pointer select-none">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white text-xs font-bold shadow-[0_0_10px_rgba(59,130,246,0.2)] cursor-pointer select-none border border-white/10">
           AI
         </div>
       </div>
